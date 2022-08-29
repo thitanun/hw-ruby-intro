@@ -34,7 +34,7 @@ end
 
 def starts_with_consonant? s
   # YOUR CODE HERE
-  s =~ /^[^AEIOU\W\d]/i
+  s =~ /^[^AEIOU\W]/i
 end
 
 def binary_multiple_of_4? s
@@ -49,27 +49,19 @@ end
 
 class BookInStock
   # YOUR CODE HERE
-  attr_reader :isbn,:price
+  attr_accessor :isbn,:price
 
   def initialize(isbn,price)
-    if isbn.empty? or price <= 0
+    if isbn.empty? || price <= 0
       raise ArgumentError
     end
     @isbn = isbn
-    @price = price
-  end
-
-  def isbn=(isbn)
-    @isbn = isbn
-  end
-
-  def price=(price)
-    @price = price
+    @price = Float(price)
   end
 
   def price_as_string
-    @price = price.to_f
-    return "$#{'%.2f' % @price}"
+    price_str = @price.to_s
+    return "$#{'%.2f' %price_str}"
   end
 
 end
